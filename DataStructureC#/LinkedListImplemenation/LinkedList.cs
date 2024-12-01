@@ -85,5 +85,9 @@ namespace DataStructureC_.LinkedListImplemenation
             }
             previous.next = nodes.next;
         }
+        public void ReverseLinkList()
+        {
+
+        }
     }
 }
