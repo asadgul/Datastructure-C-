@@ -1,2 +1,22 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using DataStructureC_.LinkedListImplemenation;
+Console.WriteLine("Single Linked List");
+LinkedList linkedList=new LinkedList();
+Console.WriteLine("Going to create new nodes");
+linkedList.AddNodeHead(1);
+linkedList.AddNodeHead(2);
+linkedList.AddNodeHead(3);
+linkedList.AddNodeHead(4);
+linkedList.AddNodeHead(5);
+linkedList.AddNodeTail(6);
+linkedList.AddNodeTail(7);
+linkedList.AddNodeTail(8);
+linkedList.AddNodeTail(9);
+linkedList.NodeInsertMiddle(15,5);
+linkedList.Display();
+Console.WriteLine("Going to Remove  nodes");
+linkedList.RemoveHead();
+linkedList.RemoveTail();
+linkedList.RemoveMiddleNode(3);
+linkedList.Display();
+Console.ReadLine();
