@@ -85,9 +85,143 @@ namespace DataStructureC_.LinkedListImplemenation
             }
             previous.next = nodes.next;
         }
-        public void ReverseLinkList()
+        public void ReverseLinkList(LinkedList linked)
         {
+            Nodes previous = linked.Head;
+            Nodes current = linked.Head.next;
+            while (current != null)
+            {
+                Nodes nextnode = current.next;
+                current.next = previous;
+                previous = current;
+                current = nextnode;
+            }
+            linked.Head.next = null;
+            linked.Head = previous;
+            //Nodes previous=Head;
+            //Nodes current = Head.next;
+            //while (current != null) {
+            //    Nodes nextnode = current.next;
+            //    current.next = previous;
+            //    previous = current;
+            //    current = nextnode;            
+            //}
+            //Head.next = null;
+            //Head = previous;
+        }
+        public  void reversePrint(Nodes nodes)
+        {
+            if(nodes == null)
+            {
+                return;
+            }
+            reversePrint(nodes.next);
+            Console.WriteLine(nodes.Data);
+        }
+        public bool CompareLists(LinkedList head1, LinkedList head2)
+        {
+            int size1st = 0,size2nd=0;
+            Nodes nodes = head1.Head;
+            while (nodes != null)
+            {
+                size1st++;
+                size2nd++;
+           nodes=nodes.next;
+            }
+            nodes = head2.Head;
+            while (nodes != null)
+            {
+                size1st--;
+                nodes = nodes.next;
+            }
+            if (size1st != 0)
+            {
+                return false;
+            }
+            Nodes data = head1.Head;
+            Nodes data2nd = head2.Head;
+            int i = 1;
+            while (i <= size2nd)
+            {
+                if (data.Data == data2nd.Data)
+                {
+                    i++;
+                    data=data.next;
+                    data2nd = data2nd.next;
+                }
+                else
+                {
+                    return false ;
+                }
+            }
+            return true;
 
         }
+       public Nodes LinklistMiddleNode(Nodes Head)
+        {
+
+            Nodes hare= Head;
+            Nodes tortoise = Head;
+            while(tortoise.next!=null && hare.next.next != null)
+            {
+                tortoise= tortoise.next;
+                hare = hare.next.next;
+            }
+            return tortoise;
+        }
+        public bool ValidateLinkListPalindrome(LinkedList linkedList1)
+        {
+            if(linkedList1.Head==null || linkedList1.Head.next == null)
+            {
+                return true;
+            }
+           
+            Nodes middle=LinklistMiddleNode(linkedList1.Head);
+            Nodes secondHalf = ReverseHalf(middle.next);
+            Nodes half1st = linkedList1.Head;
+            while (secondHalf != null)
+            {
+                if (half1st.Data != secondHalf.Data)
+                {
+                    return false;
+                }
+                secondHalf = secondHalf.next;
+                half1st = half1st.next;
+
+            }
+            return true;
+
+        }
+        public Nodes ReverseHalf(Nodes nodes)
+        {
+
+            Nodes previous = null;
+            Nodes current = nodes;
+            while (current!=null)
+            {
+                Nodes next=current.next;
+                current.next = previous;
+                previous = current;
+                current=next;
+            }
+            return previous;
+        }
+        public bool ValidateCycle(Nodes nodes)
+        {
+            Nodes turtle = nodes;
+            Nodes hare = nodes;
+            while(turtle.next!=null && hare.next.next != null)
+            {
+                turtle=turtle.next;
+                hare=hare.next.next;
+                if (hare == turtle)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
     }
 }
