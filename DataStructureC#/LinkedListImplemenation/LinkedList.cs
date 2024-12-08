@@ -222,6 +222,38 @@ namespace DataStructureC_.LinkedListImplemenation
             return false;
 
         }
+        public static LinkedList MergeLinkList(LinkedList List1st, LinkedList List2nd)
+        {
+
+            LinkedList result = new LinkedList();
+            Nodes nodes = List1st.Head;
+            Nodes nodes2= List2nd.Head;
+            while(nodes!=null && nodes2 != null)
+            {
+                if (nodes.Data < nodes2.Data)
+                {
+                    result.AddNodeTail(nodes.Data);
+                    nodes = nodes.next;
+                }
+                else
+                {
+                    result.AddNodeTail(nodes2.Data);
+                    nodes2 = nodes2.next;
+                }
+            }
+
+            while (nodes != null)
+            {
+                result.AddNodeTail(nodes.Data);
+                nodes = nodes.next;
+            }
+            while (nodes2 != null)
+            {
+                 result.AddNodeTail(nodes2.Data);
+                 nodes2 = nodes2.next;
+            }
+            return result;
+        }
 
     }
 }
